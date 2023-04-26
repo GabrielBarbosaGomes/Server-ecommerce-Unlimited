@@ -21,8 +21,8 @@ const schema = new mysql.schema({
         required: true
     },
     userName: {
-        type: String,
-        required: true
+        type: mysql.Schema.type.objectId,
+        ref : 'user'
     }
 })
 
