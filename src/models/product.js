@@ -22,7 +22,8 @@ const schema = new mysql.schema({
     },
     userName: {
         type: mysql.Schema.type.objectId,
-        ref : 'user'
+        ref : 'user',
+        required: true
     }
 })
 

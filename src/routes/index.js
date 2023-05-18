@@ -1,5 +1,9 @@
 const {Router} = require('express')
 const mysql = require('mysql2');
+const UserController = require('../controllers/UserController')
+const SessionController = require('../controllers/Login')
+const ProductController = require('../controllers/ProductController')
+
 const routes = Router();
 
 // mysql.connect(process.env.MYSQL_URI, {
@@ -22,20 +26,20 @@ routes.get('/', (req, res) => {
       });    
 })
 
-routes.post('/users')
-routes.get('/users')
+routes.post('/users', UserController.CreateUser)
+routes.get('/users', UserController.getUsers)
 
-routes.get('/users/:user_id')
+routes.get('/users/:user_id', UserController.getUserById)
 
-routes.post('/login')
+routes.post('/login', SessionController.creatSession)
 
-routes.post('/products/:user_id')
-routes.get('/products/:user_id')
-routes.put('/products/:user_id/:product_id')
-routes.delete('/products/:user_id/:product_id')
+routes.post('/products/:user_id', ProductController)
+routes.get('/products/:user_id', ProductController)
+routes.put('/products/:user_id/:product_id', ProductController)
+routes.delete('/products/:user_id/:product_id', ProductController)
 
-routes.get('/products')
-routes.get('products/:product_id')
+routes.get('/products', ProductController)
+routes.get('products/:product_id', ProductController)
 
 routes.post('/cart/:user_id')
 routes.get('/cart/:user_id')
